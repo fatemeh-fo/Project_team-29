@@ -1,3 +1,5 @@
+import Singleton.java.User;
+
 public class Singleton {
     
     private static ArrayList<Coupon> allCoupons;
@@ -19,6 +21,24 @@ public class Singleton {
     }
     
     public void mainPage() {
+    
     }
     
+    public class User
+    public class Seller extends User
+    public class Buyer extends User
+    public class Manager extends User
+    public class Request
+    public class Order
+    public class Log
+    public class LogSell extends Log
+    public class LogBuy extends Log
+    public class Product
+    public class Sale
+    public class Comment
+    public class Category
+    public class Rating
+    public class Coupon
+    public class Filter
+    public class ShoppingCart
 }
