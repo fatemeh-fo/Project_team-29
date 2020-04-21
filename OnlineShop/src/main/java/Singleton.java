@@ -16,7 +16,6 @@ public class Singleton {
     private static String currentSortBeingUsed = "Sort By Views";
     private static ArrayList<Product> existingProducts; // products displayed in products page or offs page
     
-    
     public Singleton() {
     
     }
