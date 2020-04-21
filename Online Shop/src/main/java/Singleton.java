@@ -20,4 +20,5 @@ public class Singleton {
     
     public void mainPage() {
     }
+    
 }
