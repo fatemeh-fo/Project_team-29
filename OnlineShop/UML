@@ -1,5 +1,4 @@
 @startuml
-scale 360*180
 class Main
 class Singleton
 Main -- Singleton
