@@ -1,0 +1,84 @@
+@startuml
+class Main
+class Singleton
+Main -- Singleton
+Singleton +-- User
+User <-- Manager
+User <-- Seller
+User <-- Buyer
+Singleton +-- Request
+Singleton +-- Order
+Singleton +-- Log
+Log <-- LogBuy
+Log <-- LogSell
+Singleton +-- Product
+Singleton +-- Sale
+Singleton +-- Comment
+Singleton +-- Category
+Singleton +-- Rating
+Singleton +-- Coupon
+Singleton +-- Filter
+Singleton +-- ShoppingCart
+
+class Main {
+    +main(String[] args)
+}
+
+class Singleton {
+    -{static} ArrayList<Coupon> allCoupons
+    -{static} ArrayList<Product> allProducts
+    -{static} ArrayList<Request> allRequest
+    -{static} ArrayList<Sale> allSales
+    -{static} ArrayList<User>allUsers
+    -{static} ArrayList<Manager> allManagers
+    -{static} ArrayList<Buyer> allBuyers
+    -{static} ArrayList<Seller> allSellers
+    -{static} ArrayList<Category> allCategoriesAndSubcategories
+    -{static} ArrayList<Filter> allFilters
+    -{static} ArrayList<String> positionOfUser
+    +String[][3] availableSorts : ["Sort By Date", "Sort By Rating", "Sort By views"]
+    -{static} String currentSortBeingUsed = "Sort By Views"
+    -{static} ArrayList<Product> existingProducts // products displayed in products page or offs page
+    +Singleton()
+    +String str) : Matcher
+    +isDateAndTimeValid (String dateAndTime) : boolean
+    +login-RegisterPage() : void
+    +mainPage() : void
+    +showAvailableSorts () : void
+    +sort(String sort) : void
+    +showCurrentSort () : void
+    +disableSort () : void // sets the currentSortBeingUsed to "Sort By Views"
+    +showExistingProducts (String page) : void // if we are in the offs page exclude the products that are not on sale
+}
+
+
+@enduml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
