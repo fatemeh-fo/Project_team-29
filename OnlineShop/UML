@@ -38,17 +38,36 @@ class Singleton {
     -{static} ArrayList<String> positionOfUser
     +String[][3] availableSorts : ["Sort By Date", "Sort By Rating", "Sort By views"]
     -{static} String currentSortBeingUsed = "Sort By Views"
-    -{static} ArrayList<Product> existingProducts // products displayed in products page or offs page
-    +Singleton()
-    +String str) : Matcher
+    -{static} ArrayList<Product> existingProducts
+    +Singleton() // constructor
+    +getMatcher (String regex, String str) : Matcher
     +isDateAndTimeValid (String dateAndTime) : boolean
-    +login-RegisterPage() : void
-    +mainPage() : void
+    +login-RegisterPage () : void
+    +mainPage () : void
     +showAvailableSorts () : void
-    +sort(String sort) : void
+    +sort (String sort) : void
     +showCurrentSort () : void
     +disableSort () : void // sets the currentSortBeingUsed to "Sort By Views"
-    +showExistingProducts (String page) : void // if we are in the offs page exclude the products that are not on sale
+    +showExistingProducts (String page) : void
+}
+
+class User {
+    -String username
+    -String firstName
+    -String lastName
+    -String email
+    -String phoneNumber
+    -String password
+    -boolean isLoggedIn = false
+    +User (String username) //constructor
+    +{abstract}register () : void
+    +isThereAccountWithUsername (String username) : boolean
+    +isEmailValid (String email) : boolean
+    +isPhoneNumberValid (String phoneNumber) : boolean
+    +setPersonalInfo(String firstName, String lastName, String
+    email, String phoneNumber, String password) : void
+    +login () : void
+    +editField (String field) : void
 }
 
 
