@@ -59,17 +59,31 @@ class User {
     -String phoneNumber
     -String password
     -boolean isLoggedIn = false
-    +User (String username) //constructor
+    +User (username) //constructor
     +{abstract}register () : void
     +isThereAccountWithUsername (String username) : boolean
     +isEmailValid (String email) : boolean
     +isPhoneNumberValid (String phoneNumber) : boolean
     +setPersonalInfo(String firstName, String lastName, String
     email, String phoneNumber, String password) : void
-    +login () : void
-    +editField (String field) : void
+    +login () : void // just changes isLoggedIn to true
+    +editField (String field) : void // determine which field is going to
+    change and ask for the replacement if field is username an error
+    will show
+
 }
 
+class Manager {
+    -int numberOfManagers = 0
+    +Manager (String username) // constructor
+    +register () // age manager avali e normal ezafe beshe vagarna
+    darkhast bede b manager avali
+    +deleteUser(String username) : void // also check if such a username
+    exists
+    +listUsernames () : void
+    +displayInfo (String username) : void // also check if such a username
+    exists
+}
 
 @enduml
 
