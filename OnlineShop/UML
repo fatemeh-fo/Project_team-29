@@ -111,6 +111,201 @@ class Seller {
     +displayBalance () : void
 }
 
+class Request {
+    -String requestId
+    -User makerOfTheRequest
+    -boolean isAccepted = false
+    -RequestType type
+    +Request (User user, RequestType type) // constructor
+    +listRequests () : void
+    +isThereRequestWithId (String requestId) : boolean
+    +displayInfo (String requestId) : void // also checks if requestID exists
+    +accept (String requestId) : void   // also checks if requestID exists
+                                        // isAccepted -> true
+                                        // execute the request based on its type
+    +decline (String requestId) : void  // also checks if requestID exists
+                                        // remove from allRequests arrayList
+}
+enum RequestType {
+    CREATE_SELLER_ACCOUNT
+    EDIT_PRODUCT
+    ADD_PRODUCT
+    ADD_OFF
+    EDIT_OFF
+}
+Request -- RequestType
+
+class Order {
+    -String orderId
+    -String dateAndTime
+    -Arraylist<Product> products
+    -int numberOfProducts = 0
+    -double offSaleAmount = 0, offCouponAmount = 0, totalOffAmount = 0
+    -double totalPrice = 0
+    +Order () // constructor
+}
+
+class Log {
+    -String logId
+}
+
+class LogBuy {
+    -double paidAmount
+    -double offAmount
+    -String sellerName
+    -ArrayList<Order> orders
+}
+
+class LogSell {
+    -double receivedAmount
+    -double offAmount
+    -ArrayList<Product> productsSold
+    -String buyerName
+}
+
+class Product {
+    -String productId
+    -int views = 0
+    -String timeAndDateOfCreation
+    -ProductSituation situation
+    -String name
+    -String company
+    -double price
+    -Seller seller
+    -boolean isAvailable
+    -Category category
+    -HashMap <String,String> specialProperties
+    -String info
+    -Rating avgRating
+    -ArrayList<Comment> commentList
+    -ArrayList<Sale> salesThatContainIt
+    +Product (String name, String company, double price, Seller seller, Category
+    category, HashMap<String, String> specialProperties, String info) // constructor
+    +listProducts () : void
+    +isThereProductWithProductId (String productId) : boolean
+    +removeProductById (String productId) : void // also check if it exists
+    +displayInfoById (String productId) : void // also check if it exists
+    +editProductById (String productId) : void // also check if it exists and create a request to edit
+    +addProduct () : void // asks for properties input and makes a request for a product creation
+    +showBriefAttributes () : void
+    +showAllAttributes () : void
+    +compare (String productId2) : void // if both products are in the same subcategory
+    compare them. (use "this" keyword to get productId1)
+}
+enum ProductSituation {
+    CREATION_INVESTIGATION
+    EDITION_INVESTIGATION
+    ACCEPTED
+}
+Product -- ProductSituation
+
+class Sale {
+    -String offId
+    -ArrayList<Product> productList
+    -SaleSituation situation
+    -String startDateAndTime
+    -String endDateAndTime
+    -double percentage
+    +Sale (ArrayList<product> productList, String endTime, double percentage) //constructor
+    +listSales () : void
+    +displayInfoWithId (String offId) : void //also check if it exists
+    +editOffWithId (String offId) : void // also check if it exists and send request for manager
+    +addOff () : void // ask for off properties and send request for manager
+    +listAllProductsOnSale () : void // also print the price before and after
+}
+enum SaleSituation {
+    CREATION_INVESTIGATION
+    EDITION_INVESTIGATION
+    ACCEPTED
+}
+Sale -- SaleSituation
+
+class Comment {
+    -Buyer commenter
+    -Product product
+    -String commentText
+    -CommentSituation situation
+}
+enum CommentSituation {
+    WAITING_FOR_APPROVAL
+    APPROVED
+    DECLINED
+}
+Comment -- CommentSituation
+
+class Category {
+    -String name
+    -ArrayList<String> specialProperties
+    -ArrayList<Category> subCategory
+    -ArrayList<Product> productList
+    +Category (String name, ArrayList specialProperties,
+    ArrayList<Category> subCategory) // constructor
+    +isThereACategoryWithName (String name) : boolean
+    +editCategory (String name) : void // also checks if it exists
+    +removeCatergory (String name) : void // also checks if it exists
+    +listCategories () : void
+    +toString () : String
+}
+
+class Rating {
+    -Buyer buyer
+    -double ratingNumber
+    -Product product
+    +Rating (Product product) // constructor
+}
+
+class Coupon {
+    -String couponCode
+    -String startDateAndTime
+    -String endDateAndTime
+    -double percentage
+    -double maxOffAmount
+    -ArrayList<Seller> allowedUsers
+    +Coupon (String couponCode, String startDateAndTime, String endDateAndTime, double percentage, double maxOffAmount, ArrayList<String> allowedUsers) // constructor
+    +isThereCouponWithCode (String code) : boolean
+    +listCoupons () : void
+    +displayCodeInfo (String couponCode) : void // also check if such a code exists
+    +editDiscountCode (String discountCode) : void // check if discount code exists and ask for and edit the field(s) to be changed too
+    +isDiscountCodeUsable (String discountCode) : boolean // checks if coupon is valid(not expired), the maxOffAmount is ok and the current seller is in the allowed list
+}
+
+class Filter {
+    -String name
+    -FilterType type
+    -boolean isValid
+    -boolean isBeingUsed
+    +Filter (FilterType type) // constructor
+    +updateValidFilters () : void
+    +showValidFilters () : void
+    +filter(String command) : void // also check if filter is valid
+    +showUsedFilters () : void
+    +disableFilter(String name) : void // check if the filter exists and is being used then disable it
+}
+enum FilterType {
+    BY_CATEGORY
+    BY_SPECIAL_PROPERTY
+    BY_PROPERTY // except price
+    BY_PRICE
+}
+Filter -- FilterType
+
+class ShoppingCart {
+    -ArrayList<Product> productsInCart
+    -int numberOfProducts = 0
+    -double offSaleAmount = 0, offCouponAmount = 0, totalOffAmount = 0
+    -double totalPrice = 0
+    -boolean hasEnoughCredit = true
+    +ShoppingCart () // constructor
+    +update () : void
+    +viewCart () : void
+    +listProducts () : void
+    +isProductAvailableInCart(String productId) : boolean // checks if it exists and is in the cart
+    +viewProductById (String productId) : void // if product is available view its details
+    +increaseProduct (String productId) : void // if product is available add one for it
+    +decreaseProduct (String productId) : void // if product is available remove one of it
+    +showTotalPrice () : void
+}
+
 @enduml
 
 
