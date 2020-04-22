@@ -48,7 +48,7 @@ class Singleton {
     +sort (String sort) : void
     +showCurrentSort () : void
     +disableSort () : void // sets the currentSortBeingUsed to "Sort By Views"
-    +showExistingProducts (String page) : void
+    +showExistingProducts (String page) : void // if we are in the offs page exclude the products that are not on sale
 }
 
 class User {
@@ -59,30 +59,56 @@ class User {
     -String phoneNumber
     -String password
     -boolean isLoggedIn = false
-    +User (username) //constructor
+    +User (String username) //constructor
     +{abstract}register () : void
     +isThereAccountWithUsername (String username) : boolean
     +isEmailValid (String email) : boolean
     +isPhoneNumberValid (String phoneNumber) : boolean
-    +setPersonalInfo(String firstName, String lastName, String
-    email, String phoneNumber, String password) : void
+    +setPersonalInfo(String firstName, String lastName, String email, String phoneNumber, String password) : void
     +login () : void // just changes isLoggedIn to true
-    +editField (String field) : void // determine which field is going to
-    change and ask for the replacement if field is username an error
-    will show
+    +editField (String field) : void // determine which field is going to change and ask for the replacement if field is username an error will show
 
 }
 
 class Manager {
     -int numberOfManagers = 0
     +Manager (String username) // constructor
-    +register () // age manager avali e normal ezafe beshe vagarna
-    darkhast bede b manager avali
-    +deleteUser(String username) : void // also check if such a username
-    exists
+    +register () // age manager avali e normal ezafe beshe vagarna darkhast bede b manager avali
+    +deleteUser(String username) : void // also check if such a username exists
     +listUsernames () : void
-    +displayInfo (String username) : void // also check if such a username
-    exists
+    +displayInfo (String username) : void // also check if such a username exists
+}
+
+class Buyer {
+    -double credit
+    -ShoppingCart cart
+    -LogBuy logBuy
+    +Buyer (String username) // constructor
+    +register () // normal ezafe beshe
+    +deleteUser() : void
+    +displayInfo () : void
+    +purchase () : void
+    +showLogBuy () : void
+    +showOrder (String orderId) : void // also check if it exists
+    for this buyer
+    +rate (String productId , Rating rating) : void // check if product exists and if the buyer has bought it and create the rating
+}
+
+class Seller {
+    -double credit = 0
+    -String companyName
+    -String companyAddress
+    -LogSell logSell
+    -ArrayList<Product> productsSelling
+    -ArrayList<Sale> salesTheyHave
+    +Seller (String username, String companyName, String companyAddress) // constuctor
+    +register () //darkhast bede be modir
+    +deleteUser() : void
+    +displayInfo () : void
+    +displayCompanyInfo () : void
+    +displaySalesHistory () : void
+    +displayProductsList () : void
+    +displayBalance () : void
 }
 
 @enduml
