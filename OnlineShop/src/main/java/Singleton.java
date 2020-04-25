@@ -29,7 +29,18 @@ public class Singleton {
     public class Buyer extends User
     public class Manager extends User
     public class Request
-    public class Order
+    public class Order {
+        private String orderId;
+        private String dateAndTime;
+        private ArrayList<Product> products;
+        private int numOfProducts = 0;
+        private double offSaleAmount, offCouponAmount, totalOffAmount = offSaleAmount + offCouponAmount;
+        double totalPrice;
+        
+        public Order () {
+        
+        }
+    }
     public class Log
     public class LogSell extends Log
     public class LogBuy extends Log
