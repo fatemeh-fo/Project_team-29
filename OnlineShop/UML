@@ -139,9 +139,9 @@ class Order {
     -String orderId
     -String dateAndTime
     -Arraylist<Product> products
-    -int numberOfProducts = 0
-    -double offSaleAmount = 0, offCouponAmount = 0, totalOffAmount = 0
-    -double totalPrice = 0
+    -int numberOfProducts
+    -double offSaleAmount, , totalOffAmount = offSaleAmount + offCouponAmount
+    -double totalPrice
     +Order () // constructor
 }
 
