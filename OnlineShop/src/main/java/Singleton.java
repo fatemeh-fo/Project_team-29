@@ -64,9 +64,22 @@ public class Singleton {
         
         }
     }
-    public class Log
-    public class LogSell extends Log
-    public class LogBuy extends Log
+    public class Log{
+        private String logid;
+
+    }
+    public class LogSell extends Log{
+        private double receivedAmount;
+        private double offAmount;
+        private ArrayList<Product>productsSold;
+        private String buyerName;
+    }
+    public class LogBuy extends Log{
+        private double paidAmount;
+        private double offAmount;
+        private String sellerName;
+        private ArrayList<Order>orders;
+    }
     public class Product
     public class Sale {
         private String offId;
