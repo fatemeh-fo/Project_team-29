@@ -19,6 +19,7 @@ Singleton +-- Rating
 Singleton +-- Coupon
 Singleton +-- Filter
 Singleton +-- ShoppingCart
+Singleton +- DateAndTime
 
 class Main {
     +main(String[] args)
@@ -41,7 +42,6 @@ class Singleton {
     -{static} ArrayList<Product> existingProducts
     +Singleton() // constructor
     +getMatcher (String regex, String str) : Matcher
-    +isDateAndTimeValid (String dateAndTime) : boolean
     +login-RegisterPage () : void
     +mainPage () : void
     +showAvailableSorts () : void
@@ -49,6 +49,7 @@ class Singleton {
     +showCurrentSort () : void
     +disableSort () : void // sets the currentSortBeingUsed to "Sort By Views"
     +showExistingProducts (String page) : void // if we are in the offs page exclude the products that are not on sale
+    +generateRandomNumber (int numberOfDigits) : int
 }
 
 class User {
@@ -137,7 +138,7 @@ Request -- RequestType
 
 class Order {
     -String orderId
-    -String dateAndTime
+    -DateAndTime dateAndTime
     -Arraylist<Product> products
     -int numberOfProducts
     -double offSaleAmount, , totalOffAmount = offSaleAmount + offCouponAmount
@@ -167,7 +168,7 @@ class Product {
     -String productId
     -int views = 0
     -String timeAndDateOfCreation
-    -ProductSituation situation
+    -ProductState situation
     -String name
     -String company
     -double price
@@ -192,19 +193,19 @@ class Product {
     +compare (String productId2) : void // if both products are in the same subcategory
     compare them. (use "this" keyword to get productId1)
 }
-enum ProductSituation {
+enum ProductState {
     CREATION_INVESTIGATION
     EDITION_INVESTIGATION
     ACCEPTED
 }
-Product -- ProductSituation
+Product -- ProductState
 
 class Sale {
     -String offId
     -ArrayList<Product> productList
-    -SaleSituation situation
-    -String startDateAndTime
-    -String endDateAndTime
+    -SaleState situation = SaleState.CREATION_INVESTIGATION
+    -DateAndTime startDateAndTime
+    -DateAndTime endDateAndTime
     -double percentage
     +Sale (ArrayList<product> productList, String endTime, double percentage) //constructor
     +listSales () : void
@@ -213,25 +214,25 @@ class Sale {
     +addOff () : void // ask for off properties and send request for manager
     +listAllProductsOnSale () : void // also print the price before and after
 }
-enum SaleSituation {
+enum SaleState {
     CREATION_INVESTIGATION
     EDITION_INVESTIGATION
     ACCEPTED
 }
-Sale -- SaleSituation
+Sale -- SaleState
 
 class Comment {
     -Buyer commenter
     -Product product
     -String commentText
-    -CommentSituation situation
+    -CommentState situation
 }
-enum CommentSituation {
+enum CommentState {
     WAITING_FOR_APPROVAL
     APPROVED
     DECLINED
 }
-Comment -- CommentSituation
+Comment -- CommentState
 
 class Category {
     -String name
@@ -251,17 +252,17 @@ class Rating {
     -Buyer buyer
     -double ratingNumber
     -Product product
-    +Rating (Product product) // constructor
+    +Rating (double ratingNumber, Product product) // constructor
 }
 
 class Coupon {
     -String couponCode
-    -String startDateAndTime
-    -String endDateAndTime
+    -DateAndTime startDateAndTime
+    -DateAndTime endDateAndTime
     -double percentage
     -double maxOffAmount
     -ArrayList<Seller> allowedUsers
-    +Coupon (String couponCode, String startDateAndTime, String endDateAndTime, double percentage, double maxOffAmount, ArrayList<String> allowedUsers) // constructor
+    +Coupon (String couponCode, DateAndTime startDateAndTime, DateAndTime endDateAndTime, double percentage, double maxOffAmount, ArrayList<String> allowedUsers) // constructor
     +isThereCouponWithCode (String code) : boolean
     +listCoupons () : void
     +displayCodeInfo (String couponCode) : void // also check if such a code exists
@@ -304,6 +305,19 @@ class ShoppingCart {
     +increaseProduct (String productId) : void // if product is available add one for it
     +decreaseProduct (String productId) : void // if product is available remove one of it
     +showTotalPrice () : void
+}
+
+class DateAndTime {
+    +int hour
+    +int minute
+    +int second
+    +int year
+    +int month
+    +int day
+
+    +DateAndTime (String str) // constructor
+    +isLeap () : boolean
+    +isValid () : boolean
 }
 
 @enduml
