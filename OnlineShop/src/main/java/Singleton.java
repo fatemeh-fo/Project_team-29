@@ -35,7 +35,9 @@ public class Singleton {
         return result;
     }
     
-    public class User
+    public class User{
+        private String username;
+    }
     public class Seller extends User
     public class Buyer extends User
     public class Manager extends User
