@@ -45,7 +45,11 @@ public class Singleton {
         private boolean isLoggedIn = false;
     }
     public class Seller extends User
-    public class Buyer extends User
+   public class Buyer extends User{
+        private double credit;
+        private ShoppingCart cart;
+        private LogBuy logBuy;
+   }
     public class Manager extends User
     public class Request
     public class Order {
