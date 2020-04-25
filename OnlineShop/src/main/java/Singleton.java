@@ -37,6 +37,12 @@ public class Singleton {
     
     public class User{
         private String username;
+        private String firstName;
+        private String lastName;
+        private String email;
+        private String phoneNumber;
+        private String password;
+        private boolean isLoggedIn = false;
     }
     public class Seller extends User
     public class Buyer extends User
