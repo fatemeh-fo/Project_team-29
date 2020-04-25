@@ -113,7 +113,12 @@ public class Singleton {
         EDITION_INVESTIGATION,
         ACCEPTED
     }
-    public class Comment
+    public class Comment{
+        private Buyer commenter;
+        private Product product;
+        private String comment Text;
+        private CommentState situation;
+    }
     public class Category
     public class Rating {
         public Buyer buyer;
