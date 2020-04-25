@@ -130,7 +130,15 @@ public class Singleton {
             this.product = product;
         }
     }
-    public class Coupon
+    public class Coupon{
+        private String couponCode;
+        private DateAndTime startDateAndTime;
+        private DateAndTime endDateAndTIme;
+        private double percentage;
+        private double maxOffAmount;
+        private ArrayList<seller>alowedUser;
+
+    }
     public class Filter
     public class ShoppingCart {
         private ArrayList<Product> productsInCart;
